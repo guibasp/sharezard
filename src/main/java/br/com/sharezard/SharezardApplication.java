@@ -18,17 +18,17 @@ public class SharezardApplication {
 		SpringApplication.run(SharezardApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
 
 		ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
 		initializer.setConnectionFactory(connectionFactory);
 
 		CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
-		populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
+		populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("V1_1_0__schema_v1.sql")));
 //		populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
 		initializer.setDatabasePopulator(populator);
 
 		return initializer;
-	}
+	}*/
 }
