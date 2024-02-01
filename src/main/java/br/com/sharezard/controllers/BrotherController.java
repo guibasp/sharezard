@@ -1,7 +1,11 @@
 package br.com.sharezard.controllers;
 
+import br.com.sharezard.adapters.BrotherAdapter;
 import br.com.sharezard.models.Brother;
 import br.com.sharezard.repositories.BrotherRepository;
+import br.com.sharezard.services.BrotherService;
+import br.com.sharezard.wire.in.BrotherDTO;
+import br.com.sharezard.wire.out.BrotherResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -13,6 +17,8 @@ import reactor.core.publisher.Mono;
 class BrotherController {
 
     private final BrotherRepository brotherRepository;
+    private final BrotherAdapter brotherAdapter;
+    private final BrotherService brotherService;
 
     @GetMapping("/")
     public Flux<Brother> all() {
@@ -20,8 +26,10 @@ class BrotherController {
     }
 
     @PostMapping("")
-    public Mono<Brother> create(@RequestBody Brother brother) {
-        return brotherRepository.save(brother);
+    public Mono<BrotherResponse> create(@RequestBody BrotherDTO brotherDTO) {
+        var brother = brotherAdapter.inToInternal(brotherDTO);
+        var monoBrother = brotherService.create(brother);
+        return monoBrother.map(brotherAdapter::internalToOut);
     }
 
     @GetMapping("/{id}")
