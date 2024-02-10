@@ -5,7 +5,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @ToString
@@ -17,17 +20,20 @@ public class Bill {
 
     @Id
     @Column("id")
-    private Long id;
+    private UUID id;
 
     @Column("title")
     private String title;
 
-    @Column("price")
-    private long price;
+    @Column("amount")
+    private long amount;
 
     @Column("owner_id")
-    private Brother onwer;
+    private UUID ownerId;
 
-    private List<Brother> brothers;
+    @Column("group_id")
+    private UUID groupId;
+
+    private LocalDate createdAt;
 
 }

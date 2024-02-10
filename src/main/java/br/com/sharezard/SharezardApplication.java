@@ -11,7 +11,14 @@ import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"br.com.sharezard.beans", "br.com.sharezard.models", "br.com.sharezard.repositories", "br.com.sharezard.controllers"})
+@ComponentScan(basePackages = {"br.com.sharezard.beans",
+		                       "br.com.sharezard.models",
+		                       "br.com.sharezard.wire.in",
+							   "br.com.sharezard.wire.out",
+							   "br.com.sharezard.services",
+		                       "br.com.sharezard.adapters",
+		                       "br.com.sharezard.repositories",
+		                       "br.com.sharezard.controllers"})
 public class SharezardApplication {
 
 	public static void main(String[] args) {

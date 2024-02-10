@@ -12,23 +12,19 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("brothers")
-public class Brother {
+@Table("contacts")
+public class Contact {
 
     @Id
     @Column("id")
+    private UUID contactId;
+
+    @Column("contact")
+    private String contact;
+
+    @Column("brother_id")
     private UUID brotherId;
 
-    @Column("name")
-    private String name;
-
-    @Column("nick_name")
-    private String nickName;
-
-    @Column("profile_url")
-    private String profile;
-
-    public boolean isLegalAge () {
-        return true;
-    }
+    @Column("type")
+    private ContactType contactType;
 }
