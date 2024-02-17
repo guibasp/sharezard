@@ -3,6 +3,8 @@ package br.com.sharezard.services;
 import br.com.sharezard.adapters.BrotherAdapter;
 import br.com.sharezard.controllers.BrotherController;
 import br.com.sharezard.models.Brother;
+import br.com.sharezard.repositories.BrotherRepository;
+import br.com.sharezard.wire.out.BrotherResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.Mockito.*;
@@ -24,21 +26,16 @@ public class BrotherServiceTest {
     @Autowired
     WebTestClient webTestClient;
 
-    @Autowired
-    private BrotherAdapter brotherAdapter;
-
     @MockBean
-    private BrotherService brotherService;
-
-
-    public UUID uuid = UUID.randomUUID();
-
+    private BrotherRepository brotherRepository;
+    
     @Test
     public void testGetEmployeeById() {
+        var uuid = UUID.randomUUID();
         var brother = Brother.builder().name("Guilherme").brotherId(uuid).build();
         var brotherMono = Mono.just(brother);
 
-        when(brotherService.findById(uuid)).thenReturn(brotherMono);
+        when(brotherRepository.findById(uuid)).thenReturn(brotherMono);
 
         webTestClient.get()
                 .uri("/brothers/" + uuid)
