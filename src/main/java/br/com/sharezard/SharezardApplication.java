@@ -17,6 +17,7 @@ import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 							   "br.com.sharezard.wire.out",
 							   "br.com.sharezard.services",
 		                       "br.com.sharezard.adapters",
+							   "br.com.sharezard.exceptions",
 		                       "br.com.sharezard.repositories",
 		                       "br.com.sharezard.controllers"})
 public class SharezardApplication {
