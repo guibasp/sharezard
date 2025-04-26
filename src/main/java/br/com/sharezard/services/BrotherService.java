@@ -18,8 +18,7 @@ public class BrotherService {
     private final BrotherRepository brotherRepository;
 
     public Mono<Brother> create (Brother brother) {
-        if (!brother.isLegalAge())
-            throw new ConflictException("O parca ai tem que ser de maior");
+        brother.validateLegalPerson();
         return brotherRepository.save(brother);
     }
 

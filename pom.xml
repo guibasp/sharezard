@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com</groupId>
-	<artifactId>sharezard</artifactId>
+	<artifactId>amakatsu-finances</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sharezard</name>
+	<name>amakatsu-finances</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -35,6 +35,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>r2dbc-postgresql</artifactId>
 			<version>1.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.16.1</version>
 		</dependency>
 		<dependency>
 			<groupId>io.r2dbc</groupId>

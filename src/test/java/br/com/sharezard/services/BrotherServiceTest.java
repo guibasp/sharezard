@@ -26,7 +26,7 @@ public class BrotherServiceTest {
 
     @MockBean
     private BrotherRepository brotherRepository;
-    
+
     @Test
     public void testGetEmployeeById() {
         var uuid = UUID.randomUUID();
