@@ -14,15 +14,14 @@ import org.springframework.web.reactive.result.method.annotation.ResponseEntityE
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.awt.print.Paper;
 import java.io.IOException;
 import java.util.UUID;
 
 @RestControllerAdvice
 @RestController
-@RequestMapping(value = "/papers")
+@RequestMapping(value = "/fii")
 @RequiredArgsConstructor
-public class PaperController extends ResponseEntityExceptionHandler {
+public class FIIsController extends ResponseEntityExceptionHandler {
 
     private final BrotherAdapter brotherAdapter;
     private final BrotherService brotherService;
@@ -44,7 +43,7 @@ public class PaperController extends ResponseEntityExceptionHandler {
 
     @GetMapping("/{paper-code}")
     public Mono<PaperInfoResponse> get(@PathVariable("paper-code") String paperCode) throws IOException {
-        return paperService.findById(paperCode)
+        return paperService.findFIIByCode(paperCode)
                 .map(paperAdapter::internalToOut)
                 .switchIfEmpty(Mono.error(new NotFoundException("Paper does not exist")));
     }

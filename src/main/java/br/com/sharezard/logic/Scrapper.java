@@ -12,31 +12,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Scrapper {
-    private static Pattern PATTERN;
+    private static final Pattern PATTERN;
     static {
-        PATTERN = Pattern.compile("\\d+\\.\\d+");
+        PATTERN = Pattern.compile("(\\-\\d+\\.\\d+|\\d+\\.\\d+)");//TODO pegar variacao negativa
+//        (\\-\\d+\\.\\d+|\\d+\\.\\d+)
     }
 
     private static Optional<BigDecimal> extractValue (String value) {
         Matcher matcher = PATTERN.matcher(value.replace(",", "."));
         if (matcher.find()) {
             String decimalNumber = matcher.group();
-            System.out.println("Extracted decimal number: " + decimalNumber);
             return Optional.of(new BigDecimal(decimalNumber));
         }
         return Optional.empty();
     }
     public static PaperInfo extractFIIs (String paperCode) throws IOException {
-
         var doc = Jsoup
                 .connect("https://investidor10.com.br/fiis/" + paperCode)
                 .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
                 .header("Accept-Language", "*").get();
 
         var cardBody = doc.getElementsByClass("_card-body");
-
-        System.out.println("-----------");
-        System.out.println(cardBody);
         var paperInfo = new PaperInfo();
         var value = cardBody.get(0).select("span").html().replace(",", ".");
         paperInfo.setUnitPrice(extractValue(value).orElse(null));
