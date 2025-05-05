@@ -14,8 +14,7 @@ import java.util.regex.Pattern;
 public class Scrapper {
     private static final Pattern PATTERN;
     static {
-        PATTERN = Pattern.compile("(\\-\\d+\\.\\d+|\\d+\\.\\d+)");//TODO pegar variacao negativa
-//        (\\-\\d+\\.\\d+|\\d+\\.\\d+)
+        PATTERN = Pattern.compile("(\\-\\d+\\.\\d+|\\d+\\.\\d+)");
     }
 
     private static Optional<BigDecimal> extractValue (String value) {

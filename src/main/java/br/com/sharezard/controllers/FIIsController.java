@@ -48,10 +48,11 @@ public class FIIsController extends ResponseEntityExceptionHandler {
                 .switchIfEmpty(Mono.error(new NotFoundException("Paper does not exist")));
     }
 
-    @PutMapping("/{id}")
-    public Mono<BrotherResponse> update(@PathVariable("id") UUID id, @RequestBody BrotherDTO brotherDTO) {
+    @PutMapping("/{paper-code}")
+    public Mono<BrotherResponse> update(@PathVariable("paper-code") String paperCode, @RequestBody BrotherDTO brotherDTO) {
         var brother = brotherAdapter.inToInternal(brotherDTO);
-        return brotherService.update(id, brother).map(brotherAdapter::internalToOut);
+//        return PaperService.update(paperCode, brother).map(brotherAdapter::internalToOut);
+        return null;
     }
 
     @DeleteMapping("/{id}")

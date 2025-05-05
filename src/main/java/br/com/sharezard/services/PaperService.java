@@ -18,6 +18,10 @@ public class PaperService {
 
     private final BrotherRepository brotherRepository;
 
+    public static <T> Flux<T> update(String paperCode, Brother brother) {
+        return null;
+    }
+
     public Mono<Brother> create (Brother brother) {
         brother.validateLegalPerson();
         return brotherRepository.save(brother);

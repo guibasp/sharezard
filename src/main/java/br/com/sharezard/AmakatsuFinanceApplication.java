@@ -1,7 +1,10 @@
 package br.com.sharezard;
 
+import br.com.sharezard.models.Customer;
+import br.com.sharezard.utils.ObjectUpdater;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -13,11 +16,18 @@ import org.springframework.context.annotation.ComponentScan;
 		                       "br.com.sharezard.adapters",
 							   "br.com.sharezard.exceptions",
 		                       "br.com.sharezard.repositories",
-		                       "br.com.sharezard.controllers"})
+		                       "br.com.sharezard.controllers",
+							   "br.com.sharezard.utils"})
 public class AmakatsuFinanceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AmakatsuFinanceApplication.class, args);
+	}
+
+
+	@Bean
+	public ObjectUpdater<Customer> createCustomerUpdater () {
+		return new ObjectUpdater<Customer>();
 	}
 
 	/*@Bean
